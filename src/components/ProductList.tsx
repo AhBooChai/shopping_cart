@@ -1,19 +1,27 @@
-const ProductList = () => {
+interface Props {
+  desc: string;
+  price: number;
+  quantityAvailable: number;
+}
+
+const ProductList = ({ desc, price, quantityAvailable }: Props) => {
   return (
     <div className="container text-center">
       <div className="row">
-        <div className="col">
+        <div className="col col-md-6 col-lg-4">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img
+              src={"/public/" + desc + ".jpeg"}
+              className="card-img-top"
+              alt={desc}
+            />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
+              <h5 className="card-title">{desc}</h5>
+              <p className="card-text">${price}</p>
               <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                Quantity in Stock: {quantityAvailable}
               </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
+              <button className="btn btn-primary">Add to cart</button>
             </div>
           </div>
         </div>

@@ -18,13 +18,13 @@ function App() {
       quantity: 1,
     },
     {
-      desc: "Smartphone",
+      desc: "iPhone",
       price: 999.0,
       quantityInStock: 0,
       quantity: 0,
     },
     {
-      desc: "Desktop PC",
+      desc: "Mac",
       price: 1500.0,
       quantityInStock: 1,
       quantity: 1,

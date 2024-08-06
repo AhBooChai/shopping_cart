@@ -1,33 +1,45 @@
-interface Props {
+interface Product {
   desc: string;
   price: number;
-  quantityAvailable: number;
+  quantityInStock: number;
 }
 
-const ProductList = ({ desc, price, quantityAvailable }: Props) => {
-  return (
-    <div className="container text-center">
-      <div className="row">
-        <div className="col col-md-6 col-lg-4">
-          <div className="card">
-            <img
-              src={"/public/" + desc + ".jpeg"}
-              className="card-img-top"
-              alt={desc}
-            />
-            <div className="card-body">
-              <h5 className="card-title">{desc}</h5>
-              <p className="card-text">${price}</p>
-              <p className="card-text">
-                Quantity in Stock: {quantityAvailable}
-              </p>
-              <button className="btn btn-primary">Add to cart</button>
-            </div>
-          </div>
+interface Props {
+  productList: Product[];
+  onAdd: () => void;
+}
+
+const ProductList = ({ productList, onAdd }: Props) => {
+  if (productList.length !== 0)
+    return (
+      <div className="container text-center">
+        <div className="row mb-5">
+          {productList.map((product) =>
+            product.quantityInStock !== 0 ? (
+              <div className="col col-md-6 col-lg-4">
+                <div className="card">
+                  <img
+                    src={"/public/" + product.desc + ".jpeg"}
+                    className="card-img-top"
+                    alt={product.desc}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{product.desc}</h5>
+                    <p className="card-text">${product.price}</p>
+                    <p className="card-text">
+                      Quantity in Stock: {product.quantityInStock}
+                    </p>
+                    <button className="btn btn-primary" onClick={() => onAdd()}>
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : null
+          )}
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default ProductList;

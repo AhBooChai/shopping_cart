@@ -1,52 +1,43 @@
-import { useState } from "react";
 import "./App.css";
-import Cart from "./components/Cart";
 import ProductList from "./components/ProductList";
 
+const products = [
+  {
+    desc: "Gaming Laptop",
+    price: 1200.0,
+    quantityInStock: 3,
+  },
+  {
+    desc: "MacBook Pro",
+    price: 2500.0,
+    quantityInStock: 2,
+  },
+  {
+    desc: "iPhone",
+    price: 999.99,
+    quantityInStock: 0,
+  },
+  {
+    desc: "Mac",
+    price: 4500.0,
+    quantityInStock: 1,
+  },
+  {
+    desc: "Tablet",
+    price: 800.0,
+    quantityInStock: 0,
+  },
+];
+
 function App() {
-  const [cart, setCart] = useState([
-    {
-      desc: "Gaming Laptop",
-      price: 1200.0,
-      quantityInStock: 3,
-      quantity: 2,
-    },
-    {
-      desc: "MacBook Pro",
-      price: 2500.0,
-      quantityInStock: 2,
-      quantity: 1,
-    },
-    {
-      desc: "iPhone",
-      price: 999.0,
-      quantityInStock: 0,
-      quantity: 0,
-    },
-    {
-      desc: "Mac",
-      price: 1500.0,
-      quantityInStock: 1,
-      quantity: 1,
-    },
-    {
-      desc: "Tablet",
-      price: 800.0,
-      quantityInStock: 0,
-      quantity: 0,
-    },
-  ]);
   return (
     <>
       <div className="mb-5">
-        <ProductList />
+        <ProductList
+          productList={products}
+          onAdd={() => console.log("Added to cart")}
+        />
       </div>
-      <Cart
-        cartList={cart}
-        onDelete={(desc) => setCart(cart.filter((e) => e.desc !== desc))}
-        onDecrease={() => console.log("minus 1")}
-        onIncrease={() => console.log("plus 1")}
-      />
     </>
   );
 }
